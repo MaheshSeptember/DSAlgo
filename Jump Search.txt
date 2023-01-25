@@ -1,0 +1,17 @@
+int jumpSearch(int arr[], int size, int key) {
+   int s = 0;
+   int e = sqrt(size);
+
+   while(arr[e] <= key && e < size) {
+      s = e;
+      e += sqrt(size);
+      if(e > size - 1)
+         e = size; 
+   }
+
+   for(int i = s; i < e; i++) {
+      if(arr[i] == key)
+         return i;
+   }
+   return -1;
+}

@@ -1,0 +1,30 @@
+int partition (int a[], int s, int e)  
+{  
+    int pivot = a[e];   
+    int i = (s - 1);  
+  
+    for (int j = s; j <= e - 1; j++)  
+    {    
+        if (a[j] < pivot)  
+        {  
+            i++;  
+            int t = a[i];  
+            a[i] = a[j];  
+            a[j] = t;  
+        }  
+    }  
+    int t = a[i+1];  
+    a[i+1] = a[e];  
+    a[e] = t;  
+    return (i + 1);  
+}  
+    
+void quick(int a[], int s, int e) 
+{  
+    if (s < e)  
+    {  
+        int p = partition(a, s, e);  
+        quick(a, s, p - 1);  
+        quick(a, p + 1, e);  
+    }  
+}  

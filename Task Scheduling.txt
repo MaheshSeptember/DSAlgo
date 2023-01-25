@@ -1,0 +1,11 @@
+int leastInterval(vector<char>& tasks, int n) {
+        vector<int> tasksCount(26, 0);
+        int max = 0, maxCount = 0;
+        
+        for (auto task : tasks) if (++tasksCount[task - 'A'] > tasksCount[max]) max = task - 'A';
+
+        for (int i = 0; i < 26; i++) if (tasksCount[i] == tasksCount[max]) maxCount++;
+
+        int result = (tasksCount[max] - 1) * (n + 1) + maxCount;
+        return result > tasks.size() ? result : tasks.size();
+    }

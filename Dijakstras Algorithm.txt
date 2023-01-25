@@ -1,0 +1,41 @@
+#define V 6 
+
+int minDist(int dist[], bool sptSet[])
+{
+    int min = INT_MAX, min_index;
+ 
+    for (int v = 0; v < V; v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
+ 
+    return min_index;
+}
+void printSolution(int distance[])
+{
+    for (int i = 0; i < V; i++)
+        cout  << (char)(i+65) << " "<<distance[i]<< endl;
+}
+ 
+void dijkstra(int graph[V][V], int src)
+{
+    int distance[V]; 
+ 
+    bool sptSet[V]; 
+    for (int i = 0; i < V; i++)
+        distance[i] = INT_MAX, sptSet[i] = false;
+
+    distance[src] = 0;
+ 
+    for (int count = 0; count < V - 1; count++) {
+
+        int u = minDist(distance, sptSet);
+ 
+        sptSet[u] = true;
+ 
+        for (int v = 0; v < V; v++)
+        {
+            if (!sptSet[v] && graph[u][v] && distance[u] != INT_MAX
+                && dist[u] + graph[u][v] < dist[v])
+                dist[v] = dist[u] + graph[u][v];
+    }
+}

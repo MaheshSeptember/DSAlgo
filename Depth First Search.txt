@@ -1,0 +1,12 @@
+void DFS(int v) {
+  vector<int> visited(5, false);
+  visited[v] = true;
+  queue<int> adjList = adjLists[v];
+
+  cout << v << " ";
+
+  queue<int>::iterator i;
+  for (i = adjList.begin(); i != adjList.end(); ++i)
+    if (!visited[*i])
+      DFS(*i);
+}
